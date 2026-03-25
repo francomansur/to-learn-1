@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install -y \
     libzip-dev
 
 # 3. Instala extensões essenciais do PHP (ex: banco de dados e zip)
-RUN docker-php-ext-install pdo pdo_mysql zip
+RUN docker-php-ext-install pdo pdo_mysql mysqli zip
 
 # 4. Define a pasta de trabalho padrão dentro do container
 WORKDIR /var/www/html
