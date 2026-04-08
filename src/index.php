@@ -15,7 +15,9 @@ for ($i = 1; $i <= 10; $i++) {
         </tr>
     </table>
 </div>
-
+<a href='\bruno\crud\index.php'>
+    <button>Crud</button>
+</a>
 <?
 
 
