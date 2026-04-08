@@ -16,7 +16,7 @@ try {
     if ($result->num_rows > 0) {
         session_start();
         $_SESSION['USUARIO'] = $result->fetch_assoc()['nome'];
-        header('Location: inicial.php');
+        header('Location: cadastrarUser.php');
     } else {
         echo "login ou senha incorretos";
     }
