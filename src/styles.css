@@ -1,15 +1,21 @@
 :root {
-  --bg: #f7f7f5;
-  --surface: #ffffff;
-  --surface-soft: #fbfbfa;
-  --line: #e4e4df;
-  --text: #1e1e1c;
-  --muted: #6b6b63;
-  --primary: #111111;
-  --accent: #f0f0eb;
-  --success-bg: #edf7ee;
-  --success-text: #245a2e;
-  --error-bg: #fbebeb;
+  --dourado: #FBCB56;
+  --azul-escuro: #211C47;
+  --azul-claro: #799DD6;
+  --fundo-claro: #F8F9FA;
+  --texto-escuro: #333333;
+  --branco: #FFFFFF;
+  --bg: var(--fundo-claro);
+  --surface: var(--branco);
+  --surface-soft: var(--fundo-claro);
+  --line: var(--azul-claro);
+  --text: var(--texto-escuro);
+  --muted: #5f6a7a;
+  --primary: var(--azul-escuro);
+  --accent: var(--dourado);
+  --success-bg: #e9f5ed;
+  --success-text: #1f5c2e;
+  --error-bg: #fdecec;
   --error-text: #8a3030;
 }
 
@@ -161,14 +167,14 @@ a {
   padding: 12px 14px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #fff;
+  background: var(--branco);
   color: var(--text);
   font-size: 0.98rem;
 }
 
 .form-grid input:focus {
   outline: none;
-  border-color: #bdbdb6;
+  border-color: var(--azul-escuro);
 }
 
 .actions {
@@ -184,7 +190,7 @@ a {
   padding: 11px 15px;
   border: 1px solid var(--line);
   border-radius: 10px;
-  background: #fff;
+  background: var(--branco);
   color: var(--text);
   text-decoration: none;
   cursor: pointer;
@@ -197,7 +203,7 @@ a {
 .button-primary {
   background: var(--primary);
   border-color: var(--primary);
-  color: #fff;
+  color: var(--branco);
 }
 
 .table-action {
@@ -212,7 +218,7 @@ a {
 table {
   width: 100%;
   border-collapse: collapse;
-  background: #fff;
+  background: var(--branco);
 }
 
 th,
