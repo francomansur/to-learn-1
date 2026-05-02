@@ -15,7 +15,7 @@ $msg = trim($_GET['msg'] ?? '');
 <body>
     <div class="auth-page">
         <div class="auth-card">
-            <h1 class="auth-title">Sistema</h1>
+            <h1 class="auth-title">Tec. Para internet</h1>
             <p class="auth-subtitle">Entre com seu CPF e senha para continuar.</p>
 
             <?php if ($msg !== '') { ?>

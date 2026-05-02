@@ -71,7 +71,7 @@ if ($stmt) {
                     <p class="feedback <?php echo $status === '1' ? 'success' : 'error'; ?>"><?php echo $msg; ?></p>
                 <?php } ?>
 
-                <div class="card">
+                <div class="card card-center">
                     <h2><?php echo $modoEdicao ? 'Editar Usuário' : 'Cadastro de Usuários'; ?></h2>
 
                     <form method="post" action="cadastrarUsuario.php" class="form-grid">
@@ -121,7 +121,7 @@ if ($stmt) {
                                         <td><?php echo $usuario['nome']; ?></td>
                                         <td><?php echo $usuario['senha']; ?></td>
                                         <td><a class="table-action" href="inicial.php?editar=<?php echo urlencode($usuario['cpf']); ?>">ALTERAR</a></td>
-                                        <td><a class="table-action" href="apagarUsuario.php?cpf=<?php echo urlencode($usuario['cpf']); ?>">APAGAR</a></td>
+                                        <td><a class="table-action delete" href="apagarUsuario.php?cpf=<?php echo urlencode($usuario['cpf']); ?>">APAGAR</a></td>
                                     </tr>
                                 <?php } ?>
                             <?php } elseif ($usuarios) { ?>
