@@ -7,7 +7,7 @@ $nome = isset($_SESSION['USUARIO']) ? $_SESSION['USUARIO'] : '';
     * { font-family: sans-serif; box-sizing: border-box; }
     body { margin: 0; background: #f5f5f5; }
     .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background: #fff; border-bottom: 1px solid #ddd; }
-    .navbar a { color: #2563eb; text-decoration: none; margin-left: 12px; font-size: 0.9rem; }
+    .navbar a { color: #000000; text-decoration: none; margin-left: 12px; font-size: 0.9rem; }
     .navbar a:hover { text-decoration: underline; }
     .page-body { padding: 24px; }
     .input { display: block; margin-bottom: 8px; padding: 8px; width: 100%; max-width: 300px; border: 1px solid #ccc; }

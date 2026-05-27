@@ -7,7 +7,7 @@ $nome = isset($_SESSION['USUARIO']) ? $_SESSION['USUARIO'] : '';
     * { font-family: sans-serif; box-sizing: border-box; }
     body { margin: 0; background: #f5f5f5; }
     .navbar { display: flex; justify-content: space-between; align-items: center; padding: 12px 24px; background: #fff; border-bottom: 1px solid #ddd; }
-    .navbar a { color: #2563eb; text-decoration: none; margin-left: 12px; font-size: 0.9rem; }
+    .navbar a { color: #000000; text-decoration: none; margin-left: 12px; font-size: 0.9rem; }
     .navbar a:hover { text-decoration: underline; }
     .page-body { padding: 24px; }
     .btn { display: inline-block; padding: 7px 16px; background: #2563eb; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; text-decoration: none; }
@@ -24,4 +24,9 @@ $nome = isset($_SESSION['USUARIO']) ? $_SESSION['USUARIO'] : '';
     <div>Bem-vindo, <?php echo htmlspecialchars($nome); ?>!</div>
     <div><a href="logout.php">Sair</a></div>
 </div>
+<div class="page-body">
+    <h1>Bem-vindo à página inicial!</h1>
+    <a href="listarUsers.php" class="btn">Listar Usuários</a>
+    <a href="filmes.php" class="btn">Filmes</a>
+    <a href="genero.php" class="btn">Gêneros</a>
 
