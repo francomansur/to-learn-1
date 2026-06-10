@@ -39,12 +39,15 @@ $result = $conn->query($sql);
 ?>
 <table>
     <?php while ($row = $result->fetch_assoc()): ?>
-    <tr>
-        <td><?php echo htmlspecialchars($row['descricao']); ?></td>
-        <td style="display: flex; gap: 8px;">
-            <a href="editarGenero.php?genero=<?php echo urlencode($row['genero']); ?>" class="btn">Editar</a>
-            <a href="apagarGenero.php?genero=<?php echo urlencode($row['genero']); ?>" class="btn btn-danger" onclick="return confirm('Apagar gênero?')">Apagar</a>
-        </td>
-    </tr>
+    <form action="alterarGenero.php" method="post">
+        <input type="hidden" name="genero" value="<?php echo htmlspecialchars($row['genero']); ?>">
+        <tr>
+            <td><input type="text" name="descricao" value="<?php echo htmlspecialchars($row['descricao']); ?>" required class="input"></td>
+            <td style="display: flex; gap: 8px;">
+                <button type="submit" class="btn">Editar</button>
+                <a href="apagarGenero.php?genero=<?php echo urlencode($row['genero']); ?>" class="btn btn-danger" onclick="return confirm('Apagar gênero?')">Apagar</a>
+            </td>
+        </tr>
+    </form>
     <?php endwhile; ?>
 </table>

@@ -6,6 +6,11 @@ $nome = $_POST['nome'] ?? '';
 $cpf = $_POST['cpf'] ?? '';
 $senha = $_POST['senha'] ?? '';
 
+if (empty($nome) || empty($cpf)) {
+    echo "Nome e CPF são obrigatórios.";
+    exit;
+}
+
 try {
     if (!empty($senha)) {
         $sql = "update usuarios set nome = ?, cpf = ?, senha = ? where cpf = ?";

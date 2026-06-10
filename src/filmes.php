@@ -19,6 +19,7 @@ $nome = isset($_SESSION['USUARIO']) ? $_SESSION['USUARIO'] : '';
     th, td { border: 1px solid #ddd; padding: 10px 14px; text-align: left; }
     th { background: #f0f0f0; font-weight: 600; }
     tr:hover td { background: #f9f9f9; }
+    form { margin: 10px; }
 </style>
 
 <div class="navbar">
@@ -26,9 +27,9 @@ $nome = isset($_SESSION['USUARIO']) ? $_SESSION['USUARIO'] : '';
     <div><a href="inicial.php">Voltar</a></div>
 </div>
 <div class="page-body">
-<form action="cadastrarFilme.php" method="post">
+<form action="cadastrarFilme.php" method="post" onsubmit="return validarForm(this)">
     <input type="text" name="nome" placeholder="Nome" required class="input">
-    <input type="text" name="ano" placeholder="Ano" required class="input">
+    <input type="number" name="ano" placeholder="Ano" required class="input" min="1900" max="<?php echo date('Y'); ?>">
     <select name="genero" required class="input">
         <option value="">Selecione um gênero</option>
         <?php
@@ -47,19 +48,29 @@ $nome = isset($_SESSION['USUARIO']) ? $_SESSION['USUARIO'] : '';
 </form>
 </div>
 <?php
-$sql = "select * from filmes";
+$sql = "select * from filmes f
+        join genero g on f.genero = g.genero";
 $result = $conn->query($sql);
 ?>
-<table>
-    <?php while ($row = $result->fetch_assoc()): ?>
-    <tr>
-        <td><?php echo htmlspecialchars($row['nome']); ?></td>
-        <td><?php echo htmlspecialchars($row['ano']); ?></td>
-        <td><?php echo htmlspecialchars($row['genero']); ?></td>
-        <td style="display: flex; gap: 8px;">
-            <a href="editarFilme.php?filme=<?php echo urlencode($row['filme']); ?>" class="btn">Editar</a>
-            <a href="apagarFilme.php?filme=<?php echo urlencode($row['filme']); ?>" class="btn btn-danger" onclick="return confirm('Apagar filme?')">Apagar</a>
-        </td>
-    </tr>
+<?php while ($row = $result->fetch_assoc()): ?>
+<form action="alterarFilme.php" method="post" onsubmit="return validarForm(this)">
+    <input type="hidden" name="filme" value="<?php echo htmlspecialchars((string) $row['filme']); ?>">
+    <input type="text" value="<?php echo htmlspecialchars($row['nome']); ?>" class="input" name="nome" required>
+    <input type="number" value="<?php echo htmlspecialchars((string) $row['ano']); ?>" class="input" name="ano" required min="1900" max="<?php echo date('Y'); ?>">
+    <select name="genero" required class="input">
+        <option value="">Selecione um gênero</option>
+        <?php
+        $sqlGenero = "select * from genero";
+        $resultGenero = $conn->query($sqlGenero);
+        while ($rowGenero = $resultGenero->fetch_assoc()):
+        ?>
+        <option value="<?php echo htmlspecialchars($rowGenero['genero']); ?>" <?php if ($rowGenero['genero'] == $row['genero']) echo 'selected'; ?>>
+            <?php echo htmlspecialchars($rowGenero['descricao']); ?>
+        </option>
+        <?php endwhile; ?>
+    </select>
+    <button type="submit" class="btn">Alterar</button>
+    <a href="apagarFilme.php?filme=<?php echo urlencode($row['filme']); ?>" class="btn btn-danger" onclick="return confirm('Apagar filme?')">Apagar</a>
+    <br>
+    </form>
     <?php endwhile; ?>
-</table>
