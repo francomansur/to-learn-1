@@ -1,38 +1,27 @@
 <?php
 include __DIR__ . '/../database/conexao.php';
 
-if (session_status() !== PHP_SESSION_ACTIVE) {
-    session_start();
-}
+$dados = new stdClass;
 
-$cpf = trim($_POST['cpf'] ?? '');
-$senha = trim($_POST['senha'] ?? '');
+$dados->cpf = $_POST['cpf'] ?? '';
+$dados->senha = $_POST['senha'] ?? '';
 
-if ($cpf === '') {
-    header('Location: index.php?status=0&msg=' . urlencode('Informe o CPF.'));
-    exit;
-}
+try {
+    $sql = "SELECT * FROM usuarios WHERE cpf = ? AND senha = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $dados->cpf, $dados->senha);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-if ($senha === '') {
-    header('Location: index.php?status=0&msg=' . urlencode('Informe a senha.'));
-    exit;
-}
-
-$sql = "SELECT cpf, nome, senha FROM usuarios WHERE cpf = ? AND senha = ?";
-$stmt = $conn->prepare($sql);
-
-if (!$stmt) {
-    header('Location: index.php?status=0&msg=' . urlencode('Erro interno ao processar login.'));
-    exit;
-}
-
-$stmt->bind_param('ss', $cpf, $senha);
-$stmt->execute();
-$result = $stmt->get_result();
-$usuario = $result->fetch_assoc();
-
-if (!$usuario) {
-    header('Location: index.php?status=0&msg=' . urlencode('CPF ou senha incorretos.'));
+    if ($result->num_rows > 0) {
+        session_start();
+        $_SESSION['USUARIO'] = $result->fetch_assoc()['nome'];
+        header('Location: cadastrarUser.php');
+    } else {
+        echo "login ou senha incorretos";
+    }
+} catch (Exception $e) {
+    echo "Ocorreu um erro: " . $e->getMessage();
     exit;
 }
 
