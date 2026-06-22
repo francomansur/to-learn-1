@@ -15,18 +15,16 @@ try {
 
     if ($result->num_rows > 0) {
         session_start();
-        $_SESSION['USUARIO'] = $result->fetch_assoc()['nome'];
-        header('Location: cadastrarUser.php');
+        $usuario = $result->fetch_assoc();
+        $_SESSION['nome'] = $usuario['nome'];
+        $_SESSION['cpf']  = $usuario['cpf'];
+        header('Location: listarUsers.php');
+        exit;
     } else {
-        echo "login ou senha incorretos";
+        header('Location: index.php?status=0&msg=' . urlencode('Login ou senha incorretos.'));
+        exit;
     }
 } catch (Exception $e) {
     echo "Ocorreu um erro: " . $e->getMessage();
     exit;
 }
-
-$_SESSION['cpf'] = $usuario['cpf'];
-$_SESSION['nome'] = $usuario['nome'];
-
-header('Location: inicial.php');
-exit;

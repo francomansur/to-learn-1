@@ -9,3 +9,8 @@ if (!isset($_SESSION['nome']) || $_SESSION['nome'] === '') {
     header('Location: index.php');
     exit;
 }
+
+// Compatibilidade: páginas que exibem a saudação via $_SESSION['USUARIO']
+if (!isset($_SESSION['USUARIO'])) {
+    $_SESSION['USUARIO'] = $_SESSION['nome'];
+}

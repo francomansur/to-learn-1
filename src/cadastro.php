@@ -10,6 +10,11 @@ $msg = trim($_GET['msg'] ?? '');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .input-error { border-color: #d64242 !important; box-shadow: 0 0 0 3px rgba(214,66,66,0.2) !important; }
+        .error-hint  { font-size: 0.8rem; color: #d64242; margin-top: 4px; display: none; }
+    </style>
+    <script src="validacao.js" defer></script>
 </head>
 
 <body>
@@ -22,7 +27,7 @@ $msg = trim($_GET['msg'] ?? '');
                 <p class="feedback <?php echo $status === '1' ? 'success' : 'error'; ?>"><?php echo $msg; ?></p>
             <?php } ?>
 
-            <form method="POST" action="cadastrarUsuario.php" class="form-grid">
+            <form method="POST" action="cadastrarUsuario.php" class="form-grid" onsubmit="return validarCadastro(this)">
                 <input type="hidden" name="origem" value="publico">
 
                 <div class="form-row">

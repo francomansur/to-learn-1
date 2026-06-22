@@ -10,13 +10,14 @@ $msg = trim($_GET['msg'] ?? '');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #f5f5f5; }
-        .login-box { background: #fff; padding: 32px; border: 1px solid #ddd; border-radius: 6px; min-width: 280px; }
-        .login-box h2 { margin: 0 0 20px; font-size: 1.2rem; }
-        label { display: block; margin-bottom: 4px; font-size: 0.9rem; }
-        .input { display: block; width: 100%; padding: 8px; margin-bottom: 12px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        .btn { display: block; width: 100%; padding: 9px; background: #2563eb; color: #fff; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; }
-        .btn:hover { background: #1d4ed8; }
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; background: #E5EAF3; }
+        .login-box { background: #1A204C; padding: 36px 32px; border: 1px solid #6B89C3; border-radius: 14px; min-width: 300px; color: #fff; }
+        .login-box h2 { margin: 0 0 24px; font-size: 1.5rem; font-weight: 700; color: #FFC107; }
+        label { display: block; margin-bottom: 6px; font-size: 0.85rem; font-weight: 600; color: #6B89C3; text-transform: uppercase; letter-spacing: 0.05em; }
+        .input { display: block; width: 100%; padding: 11px 14px; margin-bottom: 14px; border: 1px solid #6B89C3; border-radius: 8px; box-sizing: border-box; font-size: 0.98rem; background: #fff; color: #1A204C; transition: border-color 0.2s; }
+        .input:focus { outline: none; border-color: #FFC107; }
+        .btn { display: block; width: 100%; padding: 12px; background: #FFC107; color: #1A204C; border: none; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 700; transition: filter 0.2s; }
+        .btn:hover { filter: brightness(1.1); }
     </style>
 </head>
 
@@ -24,6 +25,9 @@ $msg = trim($_GET['msg'] ?? '');
     <div class="login-box">
         <h2>Login</h2>
         <form method="POST" action="login.php">
+            <?php if ($status === '0' && $msg !== ''): ?>
+                <p style="color:#dc2626; font-size:0.85rem; margin:0 0 12px;"><?php echo htmlspecialchars($msg); ?></p>
+            <?php endif; ?>
             <label>CPF</label>
             <input type="text" name="cpf" class="input">
             <label>Senha</label>
